@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 09:48:02 by lvogelsa          #+#    #+#             */
-/*   Updated: 2023/01/19 15:46:11 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:08:38 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ int	main(int argc, char **argv)
 // either SIGUSR1 or SIGUSR2.
 
 // Similarly to client.c, the "shift" variable demonstrates the bit 
-// position - as we start from left (pos 7) to right (pos 0) in client.c, here,
-// we need to the same by using (7 - shift) with shift equal 0 being the 
-// default value.
+// position - as we start from left (pos 7) to right (pos 0) in client.c,
+// we need to the same here by using (7 - shift) with shift = 0 being 
+// the start value.
 
 // If the signal is SIGUSR1, we are placing a 1 into the specified position of
-// "byte".
+// "byte". This is done using left bit shifting, which adds as many 0s to
+// the end of the left operator as is specified by the right operator (e.g.,
+// 1 << 3 = 1000).
 
 // Once the client has sent all 8 bits of the binary representation of the 
 // ASCII value and once they all have been handled, we can print the character 
@@ -75,7 +77,7 @@ void	bit_handler(int signal)
 	if (shift == 8)
 	{
 		ft_printf("%c", byte);
-		if (!byte)
+		if (!(byte))
 			ft_printf("\n");
 		byte = 0;
 		shift = 0;

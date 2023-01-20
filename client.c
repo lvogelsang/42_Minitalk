@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 10:20:48 by lvogelsa          #+#    #+#             */
-/*   Updated: 2023/01/19 15:45:30 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:08:48 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ int	main(int argc, char **argv)
 // message, and the length of the message.
 
 // We loop through the message to access each of its characters to then
-// encode it and send signals to the server.
+// encode it and send corresponding signals to the server.
 
 // Digital signals are binary signals, i.e., they are composed of only 0s and 
-// 1s.The ASCII characters that we are trying to send to the server can be 
-// written in binary and require 8 bits each. Therefore, we are looping through 
-// the binary representation of each character 8 times. The "shift" variable
-// demonstrates the bit position, here going from left (pos 7) to right (pos 0).
+// 1s. The ASCII characters that we are trying to send to the server can be 
+// written in binary and require 8 bits each (e.g., 'a' = "01100001"). 
+// Therefore, we are looping through the binary representation of each 
+// character 8 times and send each bit to the server individually. The "shift" 
+// variable demonstrates the bit position, here going from left (pos 7) to 
+// right (pos 0).
+// More specifically, this is done using right bit shifting.
 
 // The single ampersand is a bitwise AND operator. In our case, it basically
 // compares the bit at the specified position and 1. If they are the same, i.e.,
